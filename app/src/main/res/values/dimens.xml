@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cardview_text_size">20sp</dimen>
+    <dimen name="cardview_margin">4dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="label_size_detail">10sp</dimen>
+    <dimen name="btn_like_size">38dp</dimen>
+    <dimen name="elevation_actionBar">4dp</dimen>
+</resources>

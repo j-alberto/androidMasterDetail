@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RecyclerView Example</string>
+    <string name="title_activity_detalle_contacto">DetalleContactoActivity</string>
+    <string name="label_nombre">Nombre</string>
+    <string name="label_phone">Telefono</string>
+    <string name="label_email">Correo</string>
+</resources>
