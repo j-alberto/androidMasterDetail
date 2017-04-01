@@ -1,55 +1,61 @@
 package com.jar.recyclerview;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import com.jar.recyclerview.adapter.PageAdapter;
+import com.jar.recyclerview.fragment.MainRecyclerViewFragment;
+import com.jar.recyclerview.fragment.PerfilFragment;
+
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<Contacto> contactos;
-    private RecyclerView rvContactos;
+    private Toolbar toolBar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initActionBar();
-        initContacts();
-
-        rvContactos = (RecyclerView) findViewById(R.id.rvContactos);
-
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-
-        rvContactos.setLayoutManager(llm);
-
-        initAdapter();
+        initRefs();
 
     }
 
-    private void initActionBar() {
-        Toolbar tb = (Toolbar) findViewById(R.id.actionBar);
-        setSupportActionBar(tb);
+    private void initRefs() {
+        toolBar = (Toolbar) findViewById(R.id.actionBar);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        if(toolBar != null)
+            setSupportActionBar(toolBar);
+
+        initPageAdapter();
     }
 
-    private void initContacts() {
-        contactos = new ArrayList<>();
-        contactos.add(new Contacto("pke", "31375297","pkepke@pke.com", R.drawable.chococat));
-        contactos.add(new Contacto("Garrito", "99999999","garrito@pke.com", R.drawable.android2));
-        contactos.add(new Contacto("Shredder", "31369845","sh.tonto@pke.com", R.drawable.android3));
-        contactos.add(new Contacto("Chocky", "77777777","chocol@pke.com", R.drawable.android));
+    private void initPageAdapter() {
+        viewPager.setAdapter(new PageAdapter(
+                getSupportFragmentManager(),
+                getPageFragments()));
+
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_sentiment_very_satisfied);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_people);
     }
 
-    private void initAdapter() {
-        ContactoAdapter adapter = new ContactoAdapter(contactos);
-        rvContactos.setAdapter(adapter);
+    private List<Fragment> getPageFragments() {
+        return Arrays.asList(
+                new MainRecyclerViewFragment(),
+                new PerfilFragment()
+        );
     }
+
 }

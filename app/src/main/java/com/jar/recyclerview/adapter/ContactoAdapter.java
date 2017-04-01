@@ -1,4 +1,4 @@
-package com.jar.recyclerview;
+package com.jar.recyclerview.adapter;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -10,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.jar.recyclerview.pojo.Contacto;
+import com.jar.recyclerview.DetalleContactoActivity;
+import com.jar.recyclerview.R;
+
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by jarojas on 12/03/17.

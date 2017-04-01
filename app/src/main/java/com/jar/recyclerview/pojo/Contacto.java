@@ -1,4 +1,4 @@
-package com.jar.recyclerview;
+package com.jar.recyclerview.pojo;
 
 /**
  * Created by jarojas on 12/03/17.
