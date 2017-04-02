@@ -5,12 +5,15 @@ package com.jar.recyclerview.pojo;
  */
 
 public class Contacto {
+    private int id;
     private String nombre;
     private String telefono;
     private String email;
     private int foto;
+    private int likes;
 
-    public Contacto(String nombre, String telefono, String email, int foto) {
+    public Contacto(int id, String nombre, String telefono, String email, int foto, int likes) {
+        this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;
@@ -47,5 +50,21 @@ public class Contacto {
 
     public void setFoto(int foto) {
         this.foto = foto;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

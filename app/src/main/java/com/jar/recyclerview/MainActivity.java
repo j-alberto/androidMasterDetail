@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initRefs();
+        initPageAdapter();
 
     }
 
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         if(toolBar != null)
             setSupportActionBar(toolBar);
 
-        initPageAdapter();
     }
 
     private void initPageAdapter() {

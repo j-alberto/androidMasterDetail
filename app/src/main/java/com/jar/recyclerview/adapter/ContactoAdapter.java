@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jar.recyclerview.db.ContactBuilder;
 import com.jar.recyclerview.pojo.Contacto;
 import com.jar.recyclerview.DetalleContactoActivity;
 import com.jar.recyclerview.R;
@@ -40,12 +41,13 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
     }
 
     @Override
-    public void onBindViewHolder(ContactoViewHolder holder, int position) {
+    public void onBindViewHolder(final ContactoViewHolder holder, int position) {
         final Contacto contacto = contactos.get(position);
 
         holder.ivFoto.setImageResource(contacto.getFoto());
         holder.tvTelefono.setText(contacto.getTelefono());
         holder.tvNombre.setText(contacto.getNombre());
+        holder.tvLikes.setText(contacto.getLikes()+ " Likes");
 
         holder.ivFoto.setOnClickListener(new View.OnClickListener() {
 
@@ -67,7 +69,13 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Diste Meguta a "+ contacto.getNombre(), Toast.LENGTH_LONG);
+                ContactBuilder contactBuilder = new ContactBuilder(v.getContext());
+                contactBuilder.doLikeContact(contacto);
+
+                Toast.makeText(v.getContext(), "Diste Meguta a "+ contacto.getNombre(), Toast.LENGTH_LONG).show();
+
+                holder.tvLikes.setText(""+contactBuilder.countLikesForContact(contacto));
+
             }
         });
     }
@@ -83,6 +91,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
         private TextView tvNombre;
         private TextView tvTelefono;
         private ImageButton ibLike;
+        private TextView tvLikes;
 
         public ContactoViewHolder(View itemView) {
             super(itemView);
@@ -91,6 +100,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
             tvNombre = (TextView) itemView.findViewById(R.id.tvNombre);
             tvTelefono = (TextView) itemView.findViewById(R.id.tvTelefono);
             ibLike = (ImageButton) itemView.findViewById(R.id.ibLike);
+            tvLikes = (TextView) itemView.findViewById(R.id.tvLikes);
         }
     }
 }
